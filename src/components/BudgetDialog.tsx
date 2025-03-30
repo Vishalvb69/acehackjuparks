@@ -35,7 +35,7 @@ export const BudgetDialog: React.FC<BudgetDialogProps> = ({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Set your monthly budget (in USD)</DialogTitle>
+          <DialogTitle>Set your monthly budget (in INR)</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div className="space-y-2">
@@ -43,13 +43,13 @@ export const BudgetDialog: React.FC<BudgetDialogProps> = ({
               type="number"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              placeholder="Enter your budget in USD"
+              placeholder="Enter your budget in INR"
               step="0.01"
               min="0"
               className="w-full"
             />
             <p className="text-sm text-muted-foreground">
-              Will be converted to {formatCurrency(parseFloat(budget) || 0)}
+              Budget: {formatCurrency(parseFloat(budget) || 0)}
             </p>
           </div>
           <Button type="submit" className="w-full">Save Budget</Button>
