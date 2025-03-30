@@ -24,16 +24,11 @@ export function getCategoryColor(category: string): string {
   return colors[category as ExpenseCategory] || '#64748b';
 }
 
-// USD to INR conversion rate
-export const USD_TO_INR_RATE = 83.5;
-
 export function formatCurrency(amount: number): string {
-  // Convert USD to INR and format as Indian Rupees
-  const inrAmount = amount * USD_TO_INR_RATE;
-  
+  // Format directly as Indian Rupees
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
     maximumFractionDigits: 0, // No decimal places for INR
-  }).format(inrAmount);
+  }).format(amount);
 }
