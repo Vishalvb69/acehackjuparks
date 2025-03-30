@@ -1,6 +1,7 @@
 
 import { Progress } from "@/components/ui/progress";
 import { BudgetInfo } from "@/hooks/useExpenseTracker";
+import { formatCurrency } from "@/lib/utils";
 
 interface BudgetProgressProps {
   budgetInfo: BudgetInfo;
@@ -21,11 +22,11 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({ budgetInfo }) =>
       <h2 className="text-xl font-semibold mb-2">Budget Progress</h2>
       <div className="flex justify-between text-sm mb-1">
         <span>
-          Spent: <span className="font-medium">${spent.toFixed(2)}</span>
+          Spent: <span className="font-medium">{formatCurrency(spent)}</span>
         </span>
         <span>
           Remaining: <span className={`font-medium ${remaining < 0 ? 'text-expense-danger' : ''}`}>
-            ${remaining.toFixed(2)}
+            {formatCurrency(remaining)}
           </span>
         </span>
       </div>
@@ -35,7 +36,7 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({ budgetInfo }) =>
       />
       <div className="flex justify-between text-xs text-muted-foreground">
         <span>0%</span>
-        <span>{percentage.toFixed(1)}% of ${total.toFixed(2)}</span>
+        <span>{percentage.toFixed(1)}% of {formatCurrency(total)}</span>
         <span>100%</span>
       </div>
     </div>

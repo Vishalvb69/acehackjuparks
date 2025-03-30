@@ -2,7 +2,7 @@
 import { Expense } from "@/hooks/useExpenseTracker";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
-import { getCategoryColor } from "@/lib/utils";
+import { getCategoryColor, formatCurrency } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ExpenseListProps {
@@ -33,7 +33,7 @@ export const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onRemoveExpe
                 style={{ backgroundColor: getCategoryColor(expense.category) }}
               />
               <div>
-                <p className="font-medium">${expense.amount.toFixed(2)}</p>
+                <p className="font-medium">{formatCurrency(expense.amount)}</p>
                 <div className="flex items-center">
                   <span className="text-sm text-muted-foreground">{expense.category}</span>
                   {expense.description && (

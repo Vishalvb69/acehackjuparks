@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { formatCurrency } from "@/lib/utils";
 
 interface BudgetDialogProps {
   currentBudget: number;
@@ -34,18 +35,23 @@ export const BudgetDialog: React.FC<BudgetDialogProps> = ({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Set your monthly budget</DialogTitle>
+          <DialogTitle>Set your monthly budget (in USD)</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
-          <Input
-            type="number"
-            value={budget}
-            onChange={(e) => setBudget(e.target.value)}
-            placeholder="Enter your budget"
-            step="0.01"
-            min="0"
-            className="w-full"
-          />
+          <div className="space-y-2">
+            <Input
+              type="number"
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+              placeholder="Enter your budget in USD"
+              step="0.01"
+              min="0"
+              className="w-full"
+            />
+            <p className="text-sm text-muted-foreground">
+              Will be converted to {formatCurrency(parseFloat(budget) || 0)}
+            </p>
+          </div>
           <Button type="submit" className="w-full">Save Budget</Button>
         </form>
       </DialogContent>

@@ -1,6 +1,6 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { getCategoryColor } from '@/lib/utils';
+import { getCategoryColor, formatCurrency } from '@/lib/utils';
 
 interface ChartData {
   name: string;
@@ -70,7 +70,7 @@ export const ExpenseChart: React.FC<ExpenseChartProps> = ({ data }) => {
             ))}
           </Pie>
           <Tooltip 
-            formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
+            formatter={(value: number) => [formatCurrency(value), 'Amount']}
           />
           <Legend />
         </PieChart>
